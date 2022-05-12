@@ -78,8 +78,8 @@
 				99A8D90228285F47007189DC /* xLogExplorer.entitlements */,
 				99A8D8FF28285F47007189DC /* Preview Content */,
 				9933BAAE282AE601003F120A /* Controller.swift */,
-				9933BAB0282AE63F003F120A /* Support.swift */,
 				9933BAB2282B0099003F120A /* DatabaseManager.swift */,
+				9933BAB0282AE63F003F120A /* Support.swift */,
 			);
 			path = xLogExplorer;
 			sourceTree = "<group>";

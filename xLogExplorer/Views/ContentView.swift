@@ -20,7 +20,6 @@ struct ContentView: View {
   @ObservedObject var userSettings = UserSettings()
   @State private var callSignToQuery = ""
   @State private var databaseLocation = ""
- // @State private var showDatabasePicker = false
 
   var body: some View {
     VStack(spacing: 1) {
@@ -37,21 +36,22 @@ struct ContentView: View {
 
         Spacer()
       }
-      //.border(Color.gray)
+
       Divider()
+
       // MARK: - ListHeaderView
       ListHeaderView()
-
+      Divider()
+      
       // MARK: - ListView
       HStack {
         ListDisplayView(controller: controller)
       }
       .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 200)
-      .border(Color.gray)
-
-      Divider()
 
       // MARK: - Database Selection
+      Divider()
+
       HStack {
         TextField("Select Database", text: $userSettings.databaseLocation){
         }
@@ -68,8 +68,6 @@ struct ContentView: View {
         }
         Spacer()
       }
-      //.frame(width: 580)
-      //.border(Color.gray)
     } // end outer VStack
     .frame(width: 580)
   } // end body

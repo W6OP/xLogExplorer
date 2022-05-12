@@ -10,7 +10,6 @@ import Foundation
 class Controller: ObservableObject {
 
   let databaseManager = DatabaseManager()
-  //var databaseLocation = UserDefaults.standard.string(forKey: "databaseLocation") ?? ""
 
 @Published var displayedQsos = [QSO]()
 
@@ -20,7 +19,12 @@ class Controller: ObservableObject {
 
   func queryDatabase(callSign: String) {
     // catch later
-    displayedQsos = try! databaseManager.openDatabase(callSign: callSign)
+    do {
+    displayedQsos = try databaseManager.openDatabase(callSign: callSign)
+    }
+    catch {
+      print("query failed")
+    }
   }
 
 } // end class

@@ -18,7 +18,6 @@ struct QSO: Identifiable, Hashable {
   var lotw = false
 
   init() {
-    //id = self.id.hashValue
   }
 }
 
