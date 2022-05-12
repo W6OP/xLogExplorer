@@ -24,6 +24,7 @@
 		9933BAB0282AE63F003F120A /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		9933BAB2282B0099003F120A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		99635D47282C58AE00966C4B /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
+		99635D4A282D696A00966C4B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		99A8D8F628285F46007189DC /* xLogExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xLogExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A8D8F928285F46007189DC /* xLogExplorerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xLogExplorerApp.swift; sourceTree = "<group>"; };
 		99A8D8FB28285F46007189DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +54,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		99635D49282D691600966C4B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				9933BAAE282AE601003F120A /* Controller.swift */,
+				9933BAB2282B0099003F120A /* DatabaseManager.swift */,
+				9933BAB0282AE63F003F120A /* Support.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		99A8D8ED28285F46007189DC = {
 			isa = PBXGroup;
 			children = (
@@ -72,14 +83,13 @@
 		99A8D8F828285F46007189DC /* xLogExplorer */ = {
 			isa = PBXGroup;
 			children = (
+				99635D49282D691600966C4B /* Source */,
 				9933BAAD282AE516003F120A /* Views */,
 				99A8D8F928285F46007189DC /* xLogExplorerApp.swift */,
 				99A8D8FD28285F47007189DC /* Assets.xcassets */,
 				99A8D90228285F47007189DC /* xLogExplorer.entitlements */,
 				99A8D8FF28285F47007189DC /* Preview Content */,
-				9933BAAE282AE601003F120A /* Controller.swift */,
-				9933BAB2282B0099003F120A /* DatabaseManager.swift */,
-				9933BAB0282AE63F003F120A /* Support.swift */,
+				99635D4A282D696A00966C4B /* README.md */,
 			);
 			path = xLogExplorer;
 			sourceTree = "<group>";
