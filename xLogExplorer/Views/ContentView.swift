@@ -23,12 +23,13 @@ struct ContentView: View {
  // @State private var showDatabasePicker = false
 
   var body: some View {
-    VStack(spacing: 0) {
+    VStack(spacing: 1) {
       // MARK: - Call Sign Query
       HStack {
         TextField("Call Sign", text: $callSignToQuery)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .frame(width: 100)
+        .padding(2)
 
         Button("Query") {
           controller.queryDatabase(callSign: callSignToQuery.uppercased())
@@ -36,36 +37,41 @@ struct ContentView: View {
 
         Spacer()
       }
-      .border(Color.gray)
+      //.border(Color.gray)
+      Divider()
+      // MARK: - ListHeaderView
+      ListHeaderView()
 
       // MARK: - ListView
       HStack {
         ListDisplayView(controller: controller)
       }
-      .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
+      .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 200)
       .border(Color.gray)
+
+      Divider()
 
       // MARK: - Database Selection
       HStack {
-        //TextField("Select Database", text: $databaseLocation){
         TextField("Select Database", text: $userSettings.databaseLocation){
         }
-        .frame(width: 500)
         .textFieldStyle(RoundedBorderTextFieldStyle())
+        .padding(2)
 
         Button("Browse") {
           let panel = NSOpenPanel()
-                  panel.allowsMultipleSelection = false
-                  panel.canChooseDirectories = false
-                  if panel.runModal() == .OK {
-                    userSettings.databaseLocation = panel.url?.absoluteString ?? ""
-                    
-                  }
+          panel.allowsMultipleSelection = false
+          panel.canChooseDirectories = false
+          if panel.runModal() == .OK {
+            userSettings.databaseLocation = panel.url?.absoluteString ?? ""
+          }
         }
         Spacer()
       }
-      .border(Color.gray)
+      //.frame(width: 580)
+      //.border(Color.gray)
     } // end outer VStack
+    .frame(width: 580)
   } // end body
 }
 

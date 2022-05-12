@@ -23,6 +23,7 @@ struct ListDisplayView: View {
         .background(currentMode == .dark ?  Color(red: 0.2, green: 0.6, blue: 0.8) : Color(red: 209 / 255, green: 215 / 255, blue: 226 / 255))
       }
     }
+
 }
 
 // MARK: - Spot Row
@@ -34,27 +35,27 @@ struct QSORowView: View {
     VStack{
       HStack {
         Text(qso.band)
-          .frame(minWidth: 75, maxWidth: 75, alignment: .leading)
+          .frame(minWidth: 40, maxWidth: 40, alignment: .leading)
           .padding(.leading, 5)
           .border(width: 1, edges: [.trailing], color: .gray)
         Text(qso.mode)
-          .frame(minWidth: 90, maxWidth: 90, alignment: .leading)
+          .frame(minWidth: 40, maxWidth: 40, alignment: .leading)
           .border(width: 1, edges: [.trailing], color: .gray)
         Text(qso.grid)
           .frame(minWidth: 75, maxWidth: 75, alignment: .leading)
           .border(width: 1, edges: [.trailing], color: .gray)
         Text(qso.qslStatus)
-          .frame(minWidth: 60, maxWidth: 60, alignment: .leading)
+          .frame(minWidth: 50, maxWidth: 200, alignment: .leading)
           .border(width: 1, edges: [.trailing], color: .gray)
         Text(qso.qslDate)
-          .frame(minWidth: 200, maxWidth: 200, alignment: .leading)
+          .frame(minWidth: 150, maxWidth: .infinity, alignment: .leading)
           .padding(.leading, 5)
           .padding(.trailing, 5)
           .border(width: 1, edges: [.trailing], color: .gray)
       }
       .frame(maxHeight: 17)
     }
-    .frame(minWidth: 700, minHeight: 18)
+    .frame(minWidth: 300, minHeight: 18)
     .border(Color.gray)
   }
 }

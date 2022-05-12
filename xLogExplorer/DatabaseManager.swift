@@ -12,6 +12,7 @@ enum DatabaseError: Error {
   case unableToOpen
   case databaseMissing
   case invalidPath
+  case emptyPath
   case readError
 }
 
@@ -29,13 +30,21 @@ class DatabaseManager {
   func openDatabase(callSign: String) throws  ->[QSO] {
     var db: OpaquePointer?
 
-    let databaseLocation = String(UserDefaults.standard.string(forKey: "databaseLocation") ?? "")
+    guard let databaseLocation = UserDefaults.standard.string(forKey: "databaseLocation") else {
+      throw DatabaseError.invalidPath
+    }
+
+    if databaseLocation.isEmpty {
+      throw DatabaseError.emptyPath
+    }
 
     let fileURL = URL(string: databaseLocation)
 
     //opening the database
     if sqlite3_open(fileURL?.path, &db) != SQLITE_OK {
-      print("error opening database")
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error opening database: \(errmsg)")
+      //fatalError("Failed to open db: \(errmsg)")
       throw DatabaseError.unableToOpen
     }
 
@@ -46,7 +55,7 @@ class DatabaseManager {
 
   func queryDatabase(callSign: String, db: OpaquePointer?) throws ->[QSO] {
     var qsos = [QSO]()
-    let queryString = "SELECT pk, band_rx, mode, grid, qsl_received, qso_done FROM qso_table_v007 WHERE call == '\(callSign)'"
+    let queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE call == '\(callSign)' ORDER BY mode"
 
     var db = db
     if sqlite3_prepare(db, queryString, -1, &db, nil) != SQLITE_OK{
@@ -67,7 +76,7 @@ class DatabaseManager {
       if sqlite3_column_text(db, 4) != nil {
         qso.qslStatus = String(cString: sqlite3_column_text(db, 4))
       }
-      qso.qslDate = String(cString: sqlite3_column_text(db, 5))
+    qso.qslDate = String(cString: sqlite3_column_text(db, 5))
       print("complete:\(qso)")
       qsos.append(qso)
     }
@@ -78,27 +87,5 @@ class DatabaseManager {
   }
 
   // https://shareup.app/blog/building-a-lightweight-sqlite-wrapper-in-swift/
-//  func open(at path: String) throws -> OpaquePointer {
-//    var optionalConnection: OpaquePointer?
-//    let result = sqlite3_open(path, &optionalConnection)
-//
-//    guard SQLITE_OK == result else {
-//      SQLite.Database.close(optionalConnection)
-//      let error = SQLite.Error.onOpen(result, path)
-//      assertionFailure(error.description)
-//      throw error
-//    }
-//
-//    guard let connection = optionalConnection else {
-//      let error = SQLite.Error.onOpen(SQLITE_INTERNAL, path)
-//      assertionFailure(error.description)
-//      throw error
-//    }
-//
-//    return connection
-//  }
-
-
-  
 } // end class
 
