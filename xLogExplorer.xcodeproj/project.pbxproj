@@ -11,11 +11,14 @@
 		9933BAAF282AE601003F120A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAAE282AE601003F120A /* Controller.swift */; };
 		9933BAB1282AE63F003F120A /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAB0282AE63F003F120A /* Support.swift */; };
 		9933BAB3282B0099003F120A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAB2282B0099003F120A /* DatabaseManager.swift */; };
+		9950961A2834185A007F627B /* TopRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995096192834185A007F627B /* TopRowView.swift */; };
+		9950961C28341CA8007F627B /* QRZDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9950961B28341CA8007F627B /* QRZDataView.swift */; };
 		99635D48282C58AE00966C4B /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99635D47282C58AE00966C4B /* ListHeaderView.swift */; };
 		99A8D8FA28285F46007189DC /* xLogExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A8D8F928285F46007189DC /* xLogExplorerApp.swift */; };
 		99A8D8FC28285F46007189DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A8D8FB28285F46007189DC /* ContentView.swift */; };
 		99A8D8FE28285F47007189DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A8D8FD28285F47007189DC /* Assets.xcassets */; };
 		99A8D90128285F47007189DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A8D90028285F47007189DC /* Preview Assets.xcassets */; };
+		99B6532F2832C8EB0004425D /* CallParser in Frameworks */ = {isa = PBXBuildFile; productRef = 99B6532E2832C8EB0004425D /* CallParser */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,8 @@
 		9933BAAE282AE601003F120A /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		9933BAB0282AE63F003F120A /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		9933BAB2282B0099003F120A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		995096192834185A007F627B /* TopRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRowView.swift; sourceTree = "<group>"; };
+		9950961B28341CA8007F627B /* QRZDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRZDataView.swift; sourceTree = "<group>"; };
 		99635D47282C58AE00966C4B /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		99635D4A282D696A00966C4B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		99A8D8F628285F46007189DC /* xLogExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xLogExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99B6532F2832C8EB0004425D /* CallParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +56,8 @@
 				99A8D8FB28285F46007189DC /* ContentView.swift */,
 				9933BAAB282AE50D003F120A /* ListDisplayView.swift */,
 				99635D47282C58AE00966C4B /* ListHeaderView.swift */,
+				995096192834185A007F627B /* TopRowView.swift */,
+				9950961B28341CA8007F627B /* QRZDataView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +126,9 @@
 			dependencies = (
 			);
 			name = xLogExplorer;
+			packageProductDependencies = (
+				99B6532E2832C8EB0004425D /* CallParser */,
+			);
 			productName = xLogExplorer;
 			productReference = 99A8D8F628285F46007189DC /* xLogExplorer.app */;
 			productType = "com.apple.product-type.application";
@@ -130,7 +141,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					99A8D8F528285F46007189DC = {
 						CreatedOnToolsVersion = 13.2;
@@ -146,6 +157,9 @@
 				Base,
 			);
 			mainGroup = 99A8D8ED28285F46007189DC;
+			packageReferences = (
+				99B6532D2832C8EB0004425D /* XCRemoteSwiftPackageReference "CallParserForMac" */,
+			);
 			productRefGroup = 99A8D8F728285F46007189DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,6 +187,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				99635D48282C58AE00966C4B /* ListHeaderView.swift in Sources */,
+				9950961C28341CA8007F627B /* QRZDataView.swift in Sources */,
+				9950961A2834185A007F627B /* TopRowView.swift in Sources */,
 				9933BAB1282AE63F003F120A /* Support.swift in Sources */,
 				99A8D8FC28285F46007189DC /* ContentView.swift in Sources */,
 				9933BAB3282B0099003F120A /* DatabaseManager.swift in Sources */,
@@ -306,6 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = xLogExplorer/xLogExplorer.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -319,7 +336,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.w6op.xLogExplorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -333,6 +350,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = xLogExplorer/xLogExplorer.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -346,7 +364,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.w6op.xLogExplorer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -376,6 +394,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		99B6532D2832C8EB0004425D /* XCRemoteSwiftPackageReference "CallParserForMac" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/W6OP/CallParserForMac.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		99B6532E2832C8EB0004425D /* CallParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 99B6532D2832C8EB0004425D /* XCRemoteSwiftPackageReference "CallParserForMac" */;
+			productName = CallParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 99A8D8EE28285F46007189DC /* Project object */;
 }

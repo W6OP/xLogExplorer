@@ -18,25 +18,15 @@ import SwiftUI
 struct ContentView: View {
   @EnvironmentObject var controller: Controller
   @ObservedObject var userSettings = UserSettings()
-  @State private var callSignToQuery = ""
+
   @State private var databaseLocation = ""
 
   var body: some View {
     VStack(spacing: 1) {
       // MARK: - Call Sign Query
-      HStack {
-        TextField("Call Sign", text: $callSignToQuery)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .frame(width: 100)
-        .padding(2)
 
-        Button("Query") {
-          controller.queryDatabase(callSign: callSignToQuery.uppercased())
-        }
-
-        Spacer()
-      }
-
+      TopRowView(controller: controller,userSettings: userSettings)
+      
       Divider()
 
       // MARK: - ListHeaderView
@@ -49,6 +39,8 @@ struct ContentView: View {
       }
       .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 200)
 
+      QRZDataView(controller: controller)
+      Divider()
       // MARK: - Database Selection
       Divider()
 
@@ -74,8 +66,10 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+
     static var previews: some View {
         ContentView()
         .environmentObject(Controller())
     }
 }
+

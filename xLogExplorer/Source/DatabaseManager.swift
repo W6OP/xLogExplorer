@@ -74,7 +74,9 @@ class DatabaseManager {
       qso.id = Int(sqlite3_column_int(db, 0))
       qso.band = String(cString: sqlite3_column_text(db, 1))
       qso.mode = String(cString: sqlite3_column_text(db, 2))
-      qso.grid = String(cString: sqlite3_column_text(db, 3))
+      if sqlite3_column_text(db, 3) != nil {
+        qso.grid = String(cString: sqlite3_column_text(db, 3))
+      }
       if sqlite3_column_text(db, 4) != nil {
         qso.qslStatus = String(cString: sqlite3_column_text(db, 4))
       }
