@@ -11,8 +11,8 @@ struct TopRowView: View {
   @ObservedObject var controller: Controller
   @ObservedObject var userSettings: UserSettings
   @State private var callSignToQuery = ""
-  @State private var qrzUserId = "" //W6OP"
-  @State private var qrzPassword = "" //LetsFindSomeDXToday$56"
+  @State private var qrzUserId = ""
+  @State private var qrzPassword = ""
   @State private var secured: Bool = true
 
   var body: some View {

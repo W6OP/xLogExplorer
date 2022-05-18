@@ -124,6 +124,7 @@ class Controller: ObservableObject {
       Task {
         await MainActor.run {
           self.statusMessages.append(status)
+          qrzData["city"] = status.message
           //print(status.message)
         }
       }
