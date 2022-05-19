@@ -21,16 +21,25 @@ struct TopRowView: View {
       .textFieldStyle(RoundedBorderTextFieldStyle())
       .frame(width: 100)
       .padding(2)
-
-      Button("Query") {
+      .onSubmit {  // <--- only on pressing the return key
         controller.queryDatabase(callSign: callSignToQuery.uppercased())
       }
 
+//      Button("Query") {
+//        controller.queryDatabase(callSign: callSignToQuery.uppercased())
+//      }
+//      .onSubmit {  // <--- only on pressing the return key
+//        controller.queryDatabase(callSign: callSignToQuery.uppercased())
+//      }
+
       Divider()
 
-      Button("QRZ Lookup") {
-          controller.qrzLogon(callSignToQuery: callSignToQuery.uppercased())
-      }
+//      Button("QRZ Lookup") {
+//          controller.qrzLogon(callSignToQuery: callSignToQuery.uppercased())
+//      }
+//      .onSubmit {  // <--- only on pressing the return key
+//        controller.qrzLogon(callSignToQuery: callSignToQuery.uppercased())
+//      }
 
       TextField("QRZ Id", text: $userSettings.qrzUserId){
       }

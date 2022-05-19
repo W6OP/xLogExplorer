@@ -18,8 +18,11 @@ struct QRZDataView: View {
           .padding(2)
         Text(controller.qrzData["state"] ?? "")
           .padding(2)
+        Text(controller.qrzData["country"] ?? "")
+          .padding(2)
         Spacer()
       }
+      .padding(2)
     }
 }
 

@@ -29,18 +29,26 @@ class Controller: ObservableObject {
   var callLookup = CallLookup()
   var hitsCache = HitCache()
 
+  // persist the call sign
   var callSignToQuery = ""
+
+  var doHaveSessionKey = false
 
   init() {
     callParserCallback()
     setupSessionCallback()
-    //qrzData = ["city": "","county": "", "state": ""]
   }
 
   func queryDatabase(callSign: String) {
     // catch later
     do {
-    displayedQsos = try databaseManager.openDatabase(callSign: callSign)
+      Task {
+        await MainActor.run {
+          qrzData.removeAll()
+        }
+      }
+      displayedQsos = try databaseManager.openDatabase(callSign: callSign)
+      qrzLogon(callSignToQuery: callSign)
     }
     catch {
       print("query failed")
@@ -77,6 +85,7 @@ class Controller: ObservableObject {
             qrzData["city"] = hit.city
             qrzData["county"] = hit.county
             qrzData["state"] = hit.province
+            qrzData["country"] = hit.country
           }
         }
       }
@@ -104,7 +113,11 @@ class Controller: ObservableObject {
       //throw DatabaseError.invalidPath
     }
 
-    callLookup.logonToQrz(userId: userId, password: password)
+    if !doHaveSessionKey {
+      callLookup.logonToQrz(userId: userId, password: password)
+    } else {
+      try! lookupCall()
+    }
   }
 
   /// Callback from the Call Parser for QRZ logon success/failure.
@@ -115,8 +128,10 @@ class Controller: ObservableObject {
       let session: (state: Bool, message: String) = arg0!
       if !session.state {
         statusMessage.message = "QRZ logon failed: \(session.message)"
+        doHaveSessionKey = false
       } else {
         statusMessage.message = "QRZ logon successful"
+        doHaveSessionKey = true
         try! lookupCall()
       }
 
