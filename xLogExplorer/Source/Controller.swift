@@ -47,6 +47,11 @@ class Controller: ObservableObject {
           qrzData.removeAll()
         }
       }
+
+      guard !callSign.isEmpty else {
+        return
+      }
+
       displayedQsos = try databaseManager.openDatabase(callSign: callSign)
       qrzLogon(callSignToQuery: callSign)
     }
