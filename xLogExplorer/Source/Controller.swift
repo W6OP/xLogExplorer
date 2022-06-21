@@ -39,7 +39,7 @@ class Controller: ObservableObject {
     setupSessionCallback()
   }
 
-  func queryDatabase(callSign: String) {
+  func queryDatabase(queryLiteral: String) {
     // catch later
     do {
       Task {
@@ -48,12 +48,12 @@ class Controller: ObservableObject {
         }
       }
 
-      guard !callSign.isEmpty else {
+      guard !queryLiteral.isEmpty else {
         return
       }
 
-      displayedQsos = try databaseManager.openDatabase(callSign: callSign)
-      qrzLogon(callSignToQuery: callSign)
+      displayedQsos = try databaseManager.openDatabase(callSign: queryLiteral)
+      qrzLogon(callSignToQuery: queryLiteral)
     }
     catch {
       print("query failed")

@@ -29,6 +29,7 @@ class DatabaseManager {
   /// - Returns: [QSO]
   func openDatabase(callSign: String) throws  -> [QSO] {
     var db: OpaquePointer?
+    var qsos: [QSO] = []
 
     guard let databaseLocation = UserDefaults.standard.string(forKey: "databaseLocation") else {
       throw DatabaseError.invalidPath
@@ -47,19 +48,24 @@ class DatabaseManager {
       throw DatabaseError.unableToOpen
     }
 
-    let qsos = try queryDatabase(callSign: callSign, db: db!)
+    qsos = try queryDatabase(queryLiteral: callSign, db: db!)
 
     return qsos
   }
 
   /// Queries the database
   /// - Parameters:
-  ///   - callSign: String
+  ///   - callSign: call sign to queru=y
   ///   - db: Opaque Pointer
   /// - Returns: [QSO]
-  func queryDatabase(callSign: String, db: OpaquePointer?) throws ->[QSO] {
+  func queryDatabase(queryLiteral: String, db: OpaquePointer?) throws ->[QSO] {
     var qsos = [QSO]()
-    let queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE call == '\(callSign)' ORDER BY mode"
+    var queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE call == '\(queryLiteral)' ORDER BY mode"
+
+    let regex = NSRegularExpression("[A-Z][A-Z][0-9][0-9]")
+    if regex.matches(queryLiteral) { // Query by grid.
+      queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE band_rx LIKE '6%' AND grid LIKE '\(queryLiteral)%' ORDER BY mode"
+    }
 
     var db = db
     if sqlite3_prepare(db, queryString, -1, &db, nil) != SQLITE_OK{
@@ -93,3 +99,19 @@ class DatabaseManager {
   // https://shareup.app/blog/building-a-lightweight-sqlite-wrapper-in-swift/
 } // end class
 
+extension NSRegularExpression {
+    convenience init(_ pattern: String) {
+        do {
+            try self.init(pattern: pattern)
+        } catch {
+            preconditionFailure("Illegal regular expression: \(pattern).")
+        }
+    }
+}
+
+extension NSRegularExpression {
+    func matches(_ string: String) -> Bool {
+        let range = NSRange(location: 0, length: string.utf16.count)
+        return firstMatch(in: string, options: [], range: range) != nil
+    }
+}
