@@ -28,6 +28,7 @@ class Controller: ObservableObject {
   let callParser = PrefixFileParser()
   var callLookup = CallLookup()
   var hitsCache = HitCache()
+  var missingGridStatus = false
 
   // persist the call sign
   var callSignToQuery = ""

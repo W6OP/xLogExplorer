@@ -32,6 +32,9 @@ struct TopRowView: View {
 
       Divider()
 
+//      CheckBoxViewExact(controller: controller)
+//      Divider()
+
       TextField("QRZ Id", text: $userSettings.qrzUserId){
       }
       .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -104,3 +107,35 @@ struct SecureInputView: View {
     }
   }
 }
+
+// MARK: - Checkbox
+
+//struct CheckBoxView: View {
+//    var controller: Controller
+//    @State private var digiOnly = false
+//
+//    var body: some View {
+//        Image(systemName: digiOnly ? "checkmark.square.fill" : "square")
+//        .foregroundColor(digiOnly ? Color(.black) : Color.black)
+//            .onTapGesture {
+//                self.digiOnly.toggle()
+//                controller.missingGridStatus = digiOnly
+//            }
+//      Text("FT4/FT8 Only")
+//    }
+//}
+//
+//struct CheckBoxViewExact: View {
+//    var controller: Controller
+//    @State private var exactMatch = false
+//
+//    var body: some View {
+//        Image(systemName: exactMatch ? "checkmark.square.fill" : "square")
+//        .foregroundColor(exactMatch ? Color(.red) : Color.black)
+//            .onTapGesture {
+//                self.exactMatch.toggle()
+//              controller.missingGridStatus = exactMatch
+//            }
+//      Text("Not Confirmed")
+//    }
+//}

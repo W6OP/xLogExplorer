@@ -13,6 +13,7 @@
 		9933BAB3282B0099003F120A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAB2282B0099003F120A /* DatabaseManager.swift */; };
 		9950961A2834185A007F627B /* TopRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995096192834185A007F627B /* TopRowView.swift */; };
 		9950961C28341CA8007F627B /* QRZDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9950961B28341CA8007F627B /* QRZDataView.swift */; };
+		9959981828625F6C00219AC8 /* QueryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959981728625F6C00219AC8 /* QueryBar.swift */; };
 		99635D48282C58AE00966C4B /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99635D47282C58AE00966C4B /* ListHeaderView.swift */; };
 		99A8D8FA28285F46007189DC /* xLogExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A8D8F928285F46007189DC /* xLogExplorerApp.swift */; };
 		99A8D8FC28285F46007189DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A8D8FB28285F46007189DC /* ContentView.swift */; };
@@ -28,6 +29,7 @@
 		9933BAB2282B0099003F120A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		995096192834185A007F627B /* TopRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRowView.swift; sourceTree = "<group>"; };
 		9950961B28341CA8007F627B /* QRZDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRZDataView.swift; sourceTree = "<group>"; };
+		9959981728625F6C00219AC8 /* QueryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBar.swift; sourceTree = "<group>"; };
 		99635D47282C58AE00966C4B /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		99635D4A282D696A00966C4B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		99A8D8F628285F46007189DC /* xLogExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xLogExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +60,7 @@
 				99635D47282C58AE00966C4B /* ListHeaderView.swift */,
 				995096192834185A007F627B /* TopRowView.swift */,
 				9950961B28341CA8007F627B /* QRZDataView.swift */,
+				9959981728625F6C00219AC8 /* QueryBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				99635D48282C58AE00966C4B /* ListHeaderView.swift in Sources */,
 				9950961C28341CA8007F627B /* QRZDataView.swift in Sources */,
+				9959981828625F6C00219AC8 /* QueryBar.swift in Sources */,
 				9950961A2834185A007F627B /* TopRowView.swift in Sources */,
 				9933BAB1282AE63F003F120A /* Support.swift in Sources */,
 				99A8D8FC28285F46007189DC /* ContentView.swift in Sources */,
@@ -325,7 +329,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"xLogExplorer/Preview Content\"";
 				DEVELOPMENT_TEAM = JE278GX57V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -354,7 +358,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"xLogExplorer/Preview Content\"";
 				DEVELOPMENT_TEAM = JE278GX57V;
 				ENABLE_HARDENED_RUNTIME = YES;
