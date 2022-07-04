@@ -42,7 +42,7 @@ struct ContentView: View {
       QRZDataView(controller: controller)
       Divider()
 
-      QueryBar()
+      QueryBar(controller: controller)
       // MARK: - Database Selection
       Divider()
 

@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		9933BAAC282AE50D003F120A /* ListDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAAB282AE50D003F120A /* ListDisplayView.swift */; };
 		9933BAAF282AE601003F120A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAAE282AE601003F120A /* Controller.swift */; };
-		9933BAB1282AE63F003F120A /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAB0282AE63F003F120A /* Support.swift */; };
+		9933BAB1282AE63F003F120A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAB0282AE63F003F120A /* Model.swift */; };
 		9933BAB3282B0099003F120A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9933BAB2282B0099003F120A /* DatabaseManager.swift */; };
 		9950961A2834185A007F627B /* TopRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995096192834185A007F627B /* TopRowView.swift */; };
 		9950961C28341CA8007F627B /* QRZDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9950961B28341CA8007F627B /* QRZDataView.swift */; };
 		9959981828625F6C00219AC8 /* QueryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9959981728625F6C00219AC8 /* QueryBar.swift */; };
 		99635D48282C58AE00966C4B /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99635D47282C58AE00966C4B /* ListHeaderView.swift */; };
+		99A235F1287371FC006176E3 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A235F0287371FC006176E3 /* Utility.swift */; };
 		99A8D8FA28285F46007189DC /* xLogExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A8D8F928285F46007189DC /* xLogExplorerApp.swift */; };
 		99A8D8FC28285F46007189DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A8D8FB28285F46007189DC /* ContentView.swift */; };
 		99A8D8FE28285F47007189DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99A8D8FD28285F47007189DC /* Assets.xcassets */; };
@@ -25,13 +26,14 @@
 /* Begin PBXFileReference section */
 		9933BAAB282AE50D003F120A /* ListDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDisplayView.swift; sourceTree = "<group>"; };
 		9933BAAE282AE601003F120A /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		9933BAB0282AE63F003F120A /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
+		9933BAB0282AE63F003F120A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		9933BAB2282B0099003F120A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		995096192834185A007F627B /* TopRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRowView.swift; sourceTree = "<group>"; };
 		9950961B28341CA8007F627B /* QRZDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRZDataView.swift; sourceTree = "<group>"; };
 		9959981728625F6C00219AC8 /* QueryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBar.swift; sourceTree = "<group>"; };
 		99635D47282C58AE00966C4B /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		99635D4A282D696A00966C4B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		99A235F0287371FC006176E3 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		99A8D8F628285F46007189DC /* xLogExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xLogExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A8D8F928285F46007189DC /* xLogExplorerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xLogExplorerApp.swift; sourceTree = "<group>"; };
 		99A8D8FB28285F46007189DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,7 +72,8 @@
 			children = (
 				9933BAAE282AE601003F120A /* Controller.swift */,
 				9933BAB2282B0099003F120A /* DatabaseManager.swift */,
-				9933BAB0282AE63F003F120A /* Support.swift */,
+				9933BAB0282AE63F003F120A /* Model.swift */,
+				99A235F0287371FC006176E3 /* Utility.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -192,8 +195,9 @@
 				99635D48282C58AE00966C4B /* ListHeaderView.swift in Sources */,
 				9950961C28341CA8007F627B /* QRZDataView.swift in Sources */,
 				9959981828625F6C00219AC8 /* QueryBar.swift in Sources */,
+				99A235F1287371FC006176E3 /* Utility.swift in Sources */,
 				9950961A2834185A007F627B /* TopRowView.swift in Sources */,
-				9933BAB1282AE63F003F120A /* Support.swift in Sources */,
+				9933BAB1282AE63F003F120A /* Model.swift in Sources */,
 				99A8D8FC28285F46007189DC /* ContentView.swift in Sources */,
 				9933BAB3282B0099003F120A /* DatabaseManager.swift in Sources */,
 				9933BAAC282AE50D003F120A /* ListDisplayView.swift in Sources */,

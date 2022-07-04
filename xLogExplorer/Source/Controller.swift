@@ -15,11 +15,17 @@ struct StatusMessage: Identifiable, Hashable {
   var message = ""
 }
 
+@MainActor
 class Controller: ObservableObject {
 
   @Published var statusMessages = [StatusMessage]()
   @Published var displayedQsos = [QSO]()
   @Published var qrzData = [String: String]()
+  @Published var queryType: QueryType = .missingConfirmation {
+    didSet {
+      queryDatabase(queryType: queryType)
+    }
+  }
 
   let databaseManager = DatabaseManager()
 
@@ -42,12 +48,10 @@ class Controller: ObservableObject {
 
   func queryDatabase(queryLiteral: String) {
     // catch later
+    print("Current thread 2: \(Thread.current.threadName)")
+
     do {
-      Task {
-        await MainActor.run {
-          qrzData.removeAll()
-        }
-      }
+      qrzData.removeAll()
 
       guard !queryLiteral.isEmpty else {
         return
@@ -55,6 +59,15 @@ class Controller: ObservableObject {
 
       displayedQsos = try databaseManager.openDatabase(callSign: queryLiteral)
       qrzLogon(callSignToQuery: queryLiteral)
+    }
+    catch {
+      print("query failed")
+    }
+  }
+
+  func queryDatabase(queryType: QueryType) {
+    do {
+      displayedQsos = try databaseManager.openDatabase(queryType: queryType)
     }
     catch {
       print("query failed")
@@ -70,11 +83,9 @@ class Controller: ObservableObject {
   func lookupCall() throws {
     let spotInformation = (spotId: 123456789, sequence: 1)
 
-    Task {
-      await MainActor.run {
+    Task { @MainActor in
         qrzData.removeAll()
       }
-    }
 
     self.callLookup.lookupCall(call: callSignToQuery,
                                spotInformation: spotInformation)
@@ -85,15 +96,13 @@ class Controller: ObservableObject {
     callLookup.didUpdate = { [self] hitList in
       if !hitList!.isEmpty {
         let hit = hitList![0]
-        print(hit)
-        Task {
-          await MainActor.run {
+
+        Task { @MainActor in
             qrzData["city"] = hit.city
             qrzData["county"] = hit.county
             qrzData["state"] = hit.province
             qrzData["country"] = hit.country
           }
-        }
       }
     }
   }
@@ -141,14 +150,15 @@ class Controller: ObservableObject {
         try! lookupCall()
       }
 
-      let status = statusMessage
-      Task {
-        await MainActor.run {
-          self.statusMessages.append(status)
-          qrzData["city"] = status.message
-          //print(status.message)
-        }
-      }
+      updateStatus(statusMessage: statusMessage)
+    }
+  }
+
+  func updateStatus(statusMessage: StatusMessage) {
+
+    Task { @MainActor in
+      statusMessages.append(statusMessage)
+      qrzData["city"] = statusMessage.message
     }
   }
 

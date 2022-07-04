@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct QueryBar: View {
+  @ObservedObject var controller: Controller
+
   var body: some View {
     HStack {
       Divider()
-      Button("Undefined") {
-
+      Button("Confirmations") {
+        controller.queryType = .missingConfirmation
       }.buttonStyle(BlueButton())
       Divider()
       Button("Undefined") {
-
+        controller.displayedQsos[0].grid = "XXXX"
       }.buttonStyle(BlueButton())
       Divider()
       Button("Undefined") {
@@ -34,7 +36,7 @@ struct QueryBar: View {
 
 struct QueryBar_Previews: PreviewProvider {
     static var previews: some View {
-        QueryBar()
+      QueryBar(controller: Controller())
     }
 }
 

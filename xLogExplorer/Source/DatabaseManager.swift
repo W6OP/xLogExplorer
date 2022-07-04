@@ -96,8 +96,79 @@ class DatabaseManager {
     return qsos
   }
 
+  // MARK: - Additional Queries
+
+  /// Open the SQLite database
+  /// - Parameter callSign: String
+  /// - Returns: [QSO]
+  func openDatabase(queryType: QueryType) throws  -> [QSO] {
+    var db: OpaquePointer?
+    var qsos: [QSO] = []
+
+    guard let databaseLocation = UserDefaults.standard.string(forKey: "databaseLocation") else {
+      throw DatabaseError.invalidPath
+    }
+
+    if databaseLocation.isEmpty {
+      throw DatabaseError.emptyPath
+    }
+
+    let fileURL = URL(string: databaseLocation)
+
+    //opening the database
+    if sqlite3_open(fileURL?.path, &db) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error opening database: \(errmsg)")
+      throw DatabaseError.unableToOpen
+    }
+
+    qsos = try queryDatabase(queryType: queryType, db: db!)
+
+    return qsos
+  }
+
+  /// Queries the database
+  /// - Parameters:
+  ///   - callSign: call sign to queru=y
+  ///   - db: Opaque Pointer
+  /// - Returns: [QSO]
+  func queryDatabase(queryType: QueryType, db: OpaquePointer?) throws ->[QSO] {
+    var qsos = [QSO]()
+    let queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE band_rx LIKE '6%' AND qsl_received == '' ORDER BY grid"
+
+    var db = db
+    if sqlite3_prepare(db, queryString, -1, &db, nil) != SQLITE_OK{
+      let errmsg = String(cString: sqlite3_errmsg(db)!)
+      print("error preparing query: \(errmsg)")
+      sqlite3_finalize(db)
+      throw DatabaseError.readError
+    }
+
+    while(sqlite3_step(db) == SQLITE_ROW){
+      var qso = QSO()
+      qso.id = Int(sqlite3_column_int(db, 0))
+      qso.band = String(cString: sqlite3_column_text(db, 1))
+      qso.mode = String(cString: sqlite3_column_text(db, 2))
+      if sqlite3_column_text(db, 3) != nil {
+        qso.grid = String(cString: sqlite3_column_text(db, 3))
+      }
+      if sqlite3_column_text(db, 4) != nil {
+        qso.qslStatus = String(cString: sqlite3_column_text(db, 4))
+      }
+      qso.qslDate = String(cString: sqlite3_column_text(db, 5))
+
+      qsos.append(qso)
+    }
+
+    sqlite3_finalize(db)
+
+    return qsos
+  }
+
   // https://shareup.app/blog/building-a-lightweight-sqlite-wrapper-in-swift/
 } // end class
+
+// MARK: Extensions for Regex
 
 extension NSRegularExpression {
     convenience init(_ pattern: String) {

@@ -8,6 +8,11 @@
 import Foundation
 import CallParser
 
+enum QueryType {
+  case missingConfirmation
+  case missingGrid
+}
+
 struct QSO: Identifiable, Hashable {
 
   var id = 0
@@ -98,4 +103,3 @@ actor HitCache {
     return hits[spotId]?.count ?? 0
   }
 }
-
