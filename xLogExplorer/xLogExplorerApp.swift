@@ -10,12 +10,10 @@ import SwiftUI
 @main
 struct xLogExplorerApp: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-  
-  let controller = Controller()
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(controller)
+          ContentView()
         }
     }
 }

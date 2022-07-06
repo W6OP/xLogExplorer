@@ -16,8 +16,8 @@
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var controller: Controller
-  @ObservedObject var userSettings = UserSettings()
+  @StateObject var controller = Controller()
+  @StateObject var userSettings = UserSettings()
 
   @State private var databaseLocation = ""
 
@@ -70,8 +70,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ContentView()
-        .environmentObject(Controller())
+      ContentView(controller: Controller())
+        //.environmentObject(Controller())
     }
 }
 
