@@ -30,7 +30,7 @@ struct TopRowView: View {
           }
           controller.queryDatabase(queryLiteral: queryTerm.uppercased())
         }
-        .onChange(of: queryTerm) { tag in
+        .onChange(of: queryTerm) {
           queryTerm = queryTerm.uppercased()
         }
 
@@ -46,7 +46,7 @@ struct TopRowView: View {
       //.textCase(.uppercase)
       .frame(width: 75)
       .padding(2)
-      .onChange(of: qrzUserId) { tag in
+      .onChange(of: qrzUserId) {
         qrzUserId = qrzUserId.uppercased()
       }
 

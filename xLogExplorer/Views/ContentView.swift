@@ -25,26 +25,31 @@ struct ContentView: View {
     VStack(spacing: 1) {
       // MARK: - Call Sign Query
 
+
       TopRowView(controller: controller,userSettings: userSettings)
+        .border(.blue)
       
-      Divider()
+
+
+      //Divider()
 
       // MARK: - ListHeaderView
       ListHeaderView()
-      Divider()
-      
+      //Divider()
+
       // MARK: - ListView
       HStack {
         ListDisplayView(controller: controller)
       }
-      .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 200)
+      .frame(maxWidth: .infinity, minHeight: 400, maxHeight: .infinity)
+      .border(.green)
 
       QRZDataView(controller: controller)
-      Divider()
+      //Divider()
 
       QueryBar(controller: controller)
       // MARK: - Database Selection
-      Divider()
+     // Divider()
 
       HStack {
         TextField("Select Database", text: $userSettings.databaseLocation){
@@ -63,7 +68,9 @@ struct ContentView: View {
         Spacer()
       }
     } // end outer VStack
-    .frame(width: 580)
+    .frame(width: 600, height: 500, alignment: .topLeading)
+    .border(.red)
+    .padding(25)
   } // end body
 }
 

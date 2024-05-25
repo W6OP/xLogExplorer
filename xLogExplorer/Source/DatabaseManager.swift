@@ -139,7 +139,12 @@ class DatabaseManager {
       throw DatabaseError.unableToOpen
     }
 
-    qsos = try queryDatabase(queryType: queryType, db: db!)
+    if queryType == .unConfirmed {
+      qsos = try queryDatabase(queryType: queryType, db: db!, confirmed: false)
+    } else   {
+      qsos = try queryDatabase(queryType: queryType, db: db!, confirmed: true)
+    }
+
 
     return qsos
   }
@@ -151,9 +156,13 @@ class DatabaseManager {
   ///   - callSign: call sign to queru=y
   ///   - db: Opaque Pointer
   /// - Returns: [QSO]
-  func queryDatabase(queryType: QueryType, db: OpaquePointer?) throws -> [QSO] {
+  func queryDatabase(queryType: QueryType, db: OpaquePointer?, confirmed: Bool) throws -> [QSO] {
     var qsos = [QSO]()
-    let queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received == '' ORDER BY grid"
+    var queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received == '' ORDER BY grid"
+
+    if confirmed {
+      queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received != '' ORDER BY grid"
+    }
 
     var db = db
     if sqlite3_prepare(db, queryString, -1, &db, nil) != SQLITE_OK{

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -58,9 +58,9 @@
 			isa = PBXGroup;
 			children = (
 				99A8D8FB28285F46007189DC /* ContentView.swift */,
+				995096192834185A007F627B /* TopRowView.swift */,
 				9933BAAB282AE50D003F120A /* ListDisplayView.swift */,
 				99635D47282C58AE00966C4B /* ListHeaderView.swift */,
-				995096192834185A007F627B /* TopRowView.swift */,
 				9950961B28341CA8007F627B /* QRZDataView.swift */,
 				9959981728625F6C00219AC8 /* QueryBar.swift */,
 			);
@@ -155,7 +155,7 @@
 				};
 			};
 			buildConfigurationList = 99A8D8F128285F46007189DC /* Build configuration list for PBXProject "xLogExplorer" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -262,7 +262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -319,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;

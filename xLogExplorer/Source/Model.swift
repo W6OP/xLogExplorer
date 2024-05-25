@@ -9,7 +9,8 @@ import Foundation
 import CallParser
 
 enum QueryType {
-  case missingConfirmation
+  case unConfirmed
+  case confirmed
   case missingGrid
 }
 

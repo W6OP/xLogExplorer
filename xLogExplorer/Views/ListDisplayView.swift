@@ -32,15 +32,15 @@ struct QSORowView: View {
   var body: some View {
     VStack{
       HStack {
+        Text(qso.grid)
+          .frame(minWidth: 75, maxWidth: 75, alignment: .leading)
+        Divider()
         Text(qso.band)
           .frame(minWidth: 40, maxWidth: 40, alignment: .center)
           .padding(.leading, 5)
         Divider()
         Text(qso.mode)
           .frame(minWidth: 40, maxWidth: 40, alignment: .leading)
-        Divider()
-        Text(qso.grid)
-          .frame(minWidth: 75, maxWidth: 75, alignment: .leading)
         Divider()
         Text(qso.qslStatus)
           .frame(minWidth: 200, maxWidth: 200, alignment: .leading)

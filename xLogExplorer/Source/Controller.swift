@@ -21,7 +21,7 @@ class Controller: ObservableObject {
   @Published var statusMessages = [StatusMessage]()
   @Published var displayedQsos = [QSO]()
   @Published var qrzData = [String: String]()
-  @Published var queryType: QueryType = .missingConfirmation {
+  @Published var queryType: QueryType = .unConfirmed {
     didSet {
       queryDatabase(queryType: queryType)
     }

@@ -12,25 +12,28 @@ struct QueryBar: View {
 
   var body: some View {
     HStack {
-      Divider()
-      Button("Confirmations") {
-        controller.queryType = .missingConfirmation
+      Button("Call") {
+        //controller.queryType = .missingConfirmation
       }.buttonStyle(BlueButton())
       Divider()
       Button("Grid") {
         controller.displayedQsos[0].grid = "XXXX"
       }.buttonStyle(BlueButton())
       Divider()
-      Button("Undefined") {
+      Button("State") {
 
       }.buttonStyle(BlueButton())
       Divider()
-      Button("Undefined") {
-
+      Button("UnConfirmed") {
+        controller.queryType = .unConfirmed
       }.buttonStyle(BlueButton())
       Divider()
+      Button("Confirmed") {
+        controller.queryType = .confirmed
+      }.buttonStyle(BlueButton())
     }
     .frame(height: 25)
+    .border(.gray)
   }
 }
 
