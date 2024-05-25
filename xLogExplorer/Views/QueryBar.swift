@@ -17,7 +17,7 @@ struct QueryBar: View {
         controller.queryType = .missingConfirmation
       }.buttonStyle(BlueButton())
       Divider()
-      Button("Undefined") {
+      Button("Grid") {
         controller.displayedQsos[0].grid = "XXXX"
       }.buttonStyle(BlueButton())
       Divider()

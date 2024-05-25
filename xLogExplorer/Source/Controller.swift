@@ -70,7 +70,7 @@ class Controller: ObservableObject {
       displayedQsos = try databaseManager.openDatabase(queryType: queryType)
     }
     catch {
-      print("query failed")
+      print(error.localizedDescription)
     }
   }
 
@@ -162,5 +162,9 @@ class Controller: ObservableObject {
     }
   }
 
-
 } // end class
+
+
+/*
+ "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,\'unixepoch\') FROM qso_table_v008 WHERE band_rx LIKE \'6%\' AND qsl_received == \'\' ORDER BY grid"
+ */

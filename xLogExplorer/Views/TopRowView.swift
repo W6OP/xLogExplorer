@@ -20,7 +20,8 @@ struct TopRowView: View {
     HStack {
       TextField("Call Sign", text: $queryTerm)
         .disableAutocorrection(true)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
+        .textFieldStyle(.roundedBorder)
+        //.textCase(.uppercase)
         .frame(width: 100)
         .padding(2)
         .onSubmit {  // <--- only on pressing the return key
@@ -28,6 +29,9 @@ struct TopRowView: View {
             queryTerm = String(queryTerm.prefix(10))
           }
           controller.queryDatabase(queryLiteral: queryTerm.uppercased())
+        }
+        .onChange(of: queryTerm) { tag in
+          queryTerm = queryTerm.uppercased()
         }
 
       Divider()
@@ -37,18 +41,23 @@ struct TopRowView: View {
 
       TextField("QRZ Id", text: $userSettings.qrzUserId){
       }
-      .textFieldStyle(RoundedBorderTextFieldStyle())
+      .disableAutocorrection(true)
+      .textFieldStyle(.roundedBorder)
+      //.textCase(.uppercase)
       .frame(width: 75)
       .padding(2)
+      .onChange(of: qrzUserId) { tag in
+        qrzUserId = qrzUserId.uppercased()
+      }
 
       HStack {
         if secured {
           SecureField(title, text: $userSettings.qrzPassword)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textFieldStyle(.roundedBorder)
             .frame(width: 250)
         } else {
           TextField(title, text: $userSettings.qrzPassword)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textFieldStyle(.roundedBorder)
             .frame(width: 250)
         }
         Image(systemName: self.secured ? "eye.slash" : "eye")

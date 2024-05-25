@@ -1,0 +1,15 @@
+{
+  "originHash" : "bd95b066f8ca3e6b8dc62e97d4be2ce87f5056edc2afe0bfe71dfe762cfbd745",
+  "pins" : [
+    {
+      "identity" : "callparserformac",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/W6OP/CallParserForMac.git",
+      "state" : {
+        "revision" : "015d68e6ee50a6bc8a62ae0bc3024ff19760a864",
+        "version" : "1.5.0"
+      }
+    }
+  ],
+  "version" : 3
+}

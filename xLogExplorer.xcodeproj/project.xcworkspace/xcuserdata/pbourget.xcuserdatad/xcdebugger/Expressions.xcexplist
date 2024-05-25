@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "DatabaseManager.openDatabase(dbLocation:callSign:):DatabaseManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sqlite3_column_text(db, 3)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

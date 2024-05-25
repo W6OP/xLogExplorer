@@ -24,6 +24,23 @@ class DatabaseManager {
 
   }
 
+//  func openDatabase() -> OpaquePointer?
+//      {
+//          let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+//              .appendingPathComponent(dbPath)
+//          var db: OpaquePointer? = nil
+//          if sqlite3_open(fileURL.path, &db) != SQLITE_OK
+//          {
+//              print("error opening database")
+//              return nil
+//          }
+//          else
+//          {
+//              print("Successfully opened connection to database at \(dbPath)")
+//              return db
+//          }
+//      }
+
   /// Open the SQLite database
   /// - Parameter callSign: String
   /// - Returns: [QSO]
@@ -60,11 +77,11 @@ class DatabaseManager {
   /// - Returns: [QSO]
   func queryDatabase(queryLiteral: String, db: OpaquePointer?) throws ->[QSO] {
     var qsos = [QSO]()
-    var queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE call == '\(queryLiteral)' ORDER BY mode"
+    var queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE call == '\(queryLiteral)' ORDER BY mode"
 
     let regex = NSRegularExpression("[A-Z][A-Z][0-9][0-9]")
     if regex.matches(queryLiteral) { // Query by grid.
-      queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE band_rx LIKE '6%' AND grid LIKE '\(queryLiteral)%' ORDER BY mode"
+      queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND grid LIKE '\(queryLiteral)%' ORDER BY mode"
     }
 
     var db = db
@@ -127,14 +144,16 @@ class DatabaseManager {
     return qsos
   }
 
+  // NOTE: - If queries fail check to see if the database version changed i.e. qso_table_v008 t0 qso_table_v009
+  
   /// Queries the database
   /// - Parameters:
   ///   - callSign: call sign to queru=y
   ///   - db: Opaque Pointer
   /// - Returns: [QSO]
-  func queryDatabase(queryType: QueryType, db: OpaquePointer?) throws ->[QSO] {
+  func queryDatabase(queryType: QueryType, db: OpaquePointer?) throws -> [QSO] {
     var qsos = [QSO]()
-    let queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v007 WHERE band_rx LIKE '6%' AND qsl_received == '' ORDER BY grid"
+    let queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received == '' ORDER BY grid"
 
     var db = db
     if sqlite3_prepare(db, queryString, -1, &db, nil) != SQLITE_OK{
