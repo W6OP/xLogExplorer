@@ -12,6 +12,8 @@ struct QRZDataView: View {
 
     var body: some View {
       HStack {
+        Text(controller.qrzData["grid"] ?? "")
+          .padding(2)
         Text(controller.qrzData["city"] ?? "")
           .padding(2)
         Text(controller.qrzData["county"] ?? "")
