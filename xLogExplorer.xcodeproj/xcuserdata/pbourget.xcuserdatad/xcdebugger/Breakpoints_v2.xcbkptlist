@@ -62,8 +62,8 @@
             filePath = "xLogExplorer/Source/Controller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "qrzLogon(callSignToQuery:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "xLogExplorer/Source/Controller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "setupSessionCallback()"
             landmarkType = "7">
          </BreakpointContent>
@@ -193,6 +193,22 @@
             startingLineNumber = "142"
             endingLineNumber = "142"
             landmarkName = "openDatabase(queryType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0B70343-8072-437A-8C14-B323F978F122"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "xLogExplorer/Source/DatabaseManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "queryDatabase(queryType:db:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

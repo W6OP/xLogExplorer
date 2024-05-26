@@ -11,12 +11,14 @@ import CallParser
 enum QueryType {
   case unConfirmed
   case confirmed
+  case grouped
   case missingGrid
 }
 
 struct QSO: Identifiable, Hashable {
 
   var id = 0
+  var call = ""
   var band = ""
   var mode = ""
   var grid = ""

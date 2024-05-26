@@ -98,7 +98,8 @@ class Controller: ObservableObject {
         let hit = hitList![0]
 
         Task { @MainActor in
-          qrzData["grid"] = hit.grid
+            qrzData["call"] = hit.call
+            qrzData["grid"] = hit.grid
             qrzData["city"] = hit.city
             qrzData["county"] = hit.county
             qrzData["state"] = hit.province

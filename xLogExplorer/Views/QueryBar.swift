@@ -31,6 +31,10 @@ struct QueryBar: View {
       Button("Confirmed") {
         controller.queryType = .confirmed
       }.buttonStyle(BlueButton())
+      Divider()
+      Button("Grouped") {
+        controller.queryType = .grouped
+      }.buttonStyle(BlueButton())
     }
     .frame(height: 25)
     .border(.gray)

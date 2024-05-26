@@ -140,9 +140,9 @@ class DatabaseManager {
     }
 
     if queryType == .unConfirmed {
-      qsos = try queryDatabase(queryType: queryType, db: db!, confirmed: false)
+      qsos = try queryDatabase(queryType: queryType, db: db!)
     } else   {
-      qsos = try queryDatabase(queryType: queryType, db: db!, confirmed: true)
+      qsos = try queryDatabase(queryType: queryType, db: db!)
     }
 
 
@@ -156,13 +156,24 @@ class DatabaseManager {
   ///   - callSign: call sign to queru=y
   ///   - db: Opaque Pointer
   /// - Returns: [QSO]
-  func queryDatabase(queryType: QueryType, db: OpaquePointer?, confirmed: Bool) throws -> [QSO] {
+  func queryDatabase(queryType: QueryType, db: OpaquePointer?) throws -> [QSO] {
     var qsos = [QSO]()
-    var queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received == '' ORDER BY grid"
+    var queryString = ""
 
-    if confirmed {
-      queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received != '' ORDER BY grid"
+    switch queryType {
+      case .unConfirmed:
+        queryString = "SELECT pk, call, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received == '' ORDER BY grid"
+      case .confirmed:
+        queryString = "SELECT pk, call, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received != '' ORDER BY grid"
+      case .grouped:
+        queryString = "SELECT pk, call, band_rx, mode, SUBSTR(grid, 1, 4), qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%'  Group BY SUBSTR(grid, 1, 4) HAVING COUNT(qsl_received != '' OR qsl_received == NULL) = 0"
+       // queryString = "SELECT pk, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%'  Group BY grid HAVING COUNT(qsl_received != '') = 0"
+      default:
+        queryString = "SELECT pk, call, band_rx, mode, grid, qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%' AND qsl_received = '' ORDER BY grid"
     }
+    /*
+     queryString = SELECT pk, band_rx, mode, SUBSTR(grid, 1, 4), qsl_received, datetime(qso_start,'unixepoch') FROM qso_table_v008 WHERE band_rx LIKE '6%'  Group BY SUBSTR(grid, 1, 4) HAVING COUNT(qsl_received != '') = 0
+     */
 
     var db = db
     if sqlite3_prepare(db, queryString, -1, &db, nil) != SQLITE_OK{
@@ -175,15 +186,24 @@ class DatabaseManager {
     while(sqlite3_step(db) == SQLITE_ROW){
       var qso = QSO()
       qso.id = Int(sqlite3_column_int(db, 0))
-      qso.band = String(cString: sqlite3_column_text(db, 1))
-      qso.mode = String(cString: sqlite3_column_text(db, 2))
-      if sqlite3_column_text(db, 3) != nil {
-        qso.grid = String(cString: sqlite3_column_text(db, 3))
+
+      if queryType == .grouped {
+        qso.call = String(cString: sqlite3_column_text(db, 1))
+      } else {
+        qso.call = ""
       }
+      qso.band = String(cString: sqlite3_column_text(db, 2))
+      qso.mode = String(cString: sqlite3_column_text(db, 3))
+
       if sqlite3_column_text(db, 4) != nil {
-        qso.qslStatus = String(cString: sqlite3_column_text(db, 4))
+        qso.grid = String(cString: sqlite3_column_text(db, 4))
       }
-      qso.qslDate = String(cString: sqlite3_column_text(db, 5))
+
+      if sqlite3_column_text(db, 5) != nil {
+        qso.qslStatus = String(cString: sqlite3_column_text(db, 5))
+      }
+      
+      qso.qslDate = String(cString: sqlite3_column_text(db, 6))
 
       qsos.append(qso)
     }

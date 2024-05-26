@@ -13,8 +13,8 @@ struct ListDisplayView: View {
 
     var body: some View {
       ScrollView {
-        VStack(spacing: 1) {
-          ForEach(controller.displayedQsos, id: \.self) { qso in
+        LazyVStack(spacing: 1) {
+          ForEach(controller.displayedQsos) { qso in
             QSORowView(qso: qso)
           }
           .listStyle(.inset(alternatesRowBackgrounds: true))
@@ -42,8 +42,13 @@ struct QSORowView: View {
         Text(qso.mode)
           .frame(minWidth: 40, maxWidth: 40, alignment: .leading)
         Divider()
-        Text(qso.qslStatus)
-          .frame(minWidth: 200, maxWidth: 200, alignment: .leading)
+        if qso.call != "" {
+          Text(qso.call)
+            .frame(minWidth: 200, maxWidth: 200, alignment: .leading)
+        } else {
+          Text(qso.qslStatus)
+            .frame(minWidth: 200, maxWidth: 200, alignment: .leading)
+        }
         Divider()
         Text(qso.qslDate)
           .frame(minWidth: 150, maxWidth: .infinity, alignment: .leading)
